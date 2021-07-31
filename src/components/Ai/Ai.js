@@ -7,12 +7,13 @@ const Ai = () => {
     return(
         <>
             <h1>Computer</h1>
-            <p>Score</p>
-            <div>
+            <p>Score:</p>
+            <div className="cards">
+                <img src={questionM} alt="card deck" height="150px" width="200px"/> 
                 <img src={deck} alt="card deck" height="200px" width="200px"/>
-                <img src={questionM} alt="card deck" height="200px" width="200px"/>
             </div>
-            <Button variant="contained">Computer</Button>
+            <hr/>
+            <Button variant="contained" disabled>Computer</Button>
         </>
     )
 };

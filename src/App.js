@@ -1,6 +1,6 @@
 import './App.css';
-import Player from './components/Player/Player'
-import Computer from './components/Ai/Ai'
+import Player from './components/Player/Player';
+import Computer from './components/Ai/Ai';
 
 function App() {
   return (
