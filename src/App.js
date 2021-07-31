@@ -1,5 +1,6 @@
 import './App.css';
-import deck from './images/deck.png'
+import Player from './components/Player/Player'
+import Computer from './components/Ai/Ai'
 
 function App() {
   return (
@@ -10,13 +11,11 @@ function App() {
       <div className="players">
 
         <div>
-          <h1>You</h1>
-          <img src={deck} alt="card deck" height="200px" width="200px"/>
+          <Player />
         </div>
 
         <div>
-          <h1>Computer</h1>
-          <img src={deck} alt="card deck" height="200px" width="200px"/>
+          <Computer />
         </div>
 
       </div>
