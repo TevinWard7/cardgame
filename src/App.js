@@ -20,14 +20,22 @@ function App() {
   const [compCardImg, setCompCardImg] = useState(questionM);
   const [compCardVal, setCompCardVal] = useState();
 
+  const [disablePly, setDisablePly] = useState(false);
+
   const compareCards = () => {
 
-    if (compCardVal > userCardVal) setCompWins(compWins + 1);
+    if (compCardVal > userCardVal) {
+      setCompWins(compWins + 1);
+      setTimeout(() => { setCompCardImg(sprinkle); }, 1050);
+      setTimeout(() => { setCompCardImg(compCardImg); }, 3050);
+    };
     if (userCardVal > compCardVal) {
       setWins(wins + 1);
       setTimeout(() => { setUserCardImg(sprinkle); }, 2000);
-      setTimeout(() => { setUserCardImg(userCardImg); }, 4000);
+      setTimeout(() => { setUserCardImg(userCardImg); }, 3050);
     };
+
+    setDisablePly(false);
     
   };
 
@@ -54,6 +62,9 @@ function App() {
 
   const drawCards = async () => {
 
+    // Disable from pressing draw again right awat
+    setDisablePly(true);
+
     // Draw cards from the API (2 cards)
     let res = await API.draw();
 
@@ -65,7 +76,7 @@ function App() {
   return (
     <div className="App background">
 
-      <UserContext.Provider value={{wins, compWins, userCardImg, compCardImg, drawCards}}>
+      <UserContext.Provider value={{wins, compWins, userCardImg, compCardImg, drawCards, disablePly}}>
 
         <h1>High Card Wins</h1>
         <img src={gameZone} alt="game" width="50" height="50"/>

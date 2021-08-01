@@ -4,7 +4,7 @@ import { UserContext } from "../../utils/UserContext";
 
 const Player = () => {
 
-    const {wins, userCardImg, drawCards} = useContext(UserContext);
+    const {wins, userCardImg, drawCards, disablePly} = useContext(UserContext);
 
     return(
         <>
@@ -14,7 +14,10 @@ const Player = () => {
                 <img src={userCardImg} alt="card" height="250px" width="250px"/>
             </div>
             <hr/>
-            <Button variant="contained" onClick={() => drawCards()}>Play hand</Button>
+            {disablePly === true ? 
+            <Button variant="contained" disabled>Playing..</Button>
+            :
+            <Button variant="contained" onClick={() => drawCards()}>Play hand</Button>}
         </>
     )
 };
