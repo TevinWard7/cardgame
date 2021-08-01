@@ -60,6 +60,15 @@ p {
   padding: 0rem 3rem 0rem 3rem;
 }
 
+hr {
+  border: .1px solid #eeeeee;
+}
+
+Button {
+  color: blueviolet;
+  font-family: 'Times New Roman', Times, serif;
+}
+
 .end-screen {
   font-size: 45px;
   display: flex;

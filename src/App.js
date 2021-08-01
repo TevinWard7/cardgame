@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Player from './components/Player/Player';
 import Computer from './components/Ai/Ai';
 import { UserContext } from './utils/UserContext';
@@ -10,6 +10,8 @@ import qpink from './images/q-pink.png';
 import gameZone from './images/game.png'
 import API from './utils/API';
 import Button from '@material-ui/core/Button';
+import anime from 'animejs/lib/anime.es.js';
+
 
 function App() {
 
@@ -113,12 +115,26 @@ function App() {
     if (num === 5) return(<><img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/></>);
   };
 
+  useEffect(() => {
+    anime({
+      targets: '#end-t',
+      keyframes: [
+        {opacity: 0},
+        {translateY: -1000},
+        {opacity: 100},
+        {translateY: 0},
+      ],
+      duration: 1000,
+      easing: 'easeInOutQuad'
+    });
+  },[wins, compWins])
+
   return (
     <div className="App background">
 
       {wins === 5 || compWins === 5 ?
       <div className="end-screen">
-        <h3>{wins === 5 ? `You Win 🏆 ` : `Machine Wins 🏆 `}</h3>
+        <h3 id="end-t" style={{opacity:0}}>{wins === 5 ? `You Win 🏆 ` : `Machine Wins 🏆 `}</h3>
         <Button variant="contained" onClick={() => window.location.reload()} color="default">Reset</Button>
       </div>
       :
@@ -129,11 +145,11 @@ function App() {
 
         <div className="players">
 
-          <div>
+          <div id="p1">
             <Player />
           </div>
 
-          <div>
+          <div id="p2">
             <Computer />
           </div>
 
