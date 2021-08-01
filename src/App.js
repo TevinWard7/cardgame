@@ -35,7 +35,9 @@ function App() {
       setTimeout(() => { setUserCardImg(userCardImg); }, 3050);
     };
 
-    setDisablePly(false);
+    // Enable play button again
+    setTimeout(() => { setDisablePly(false); }, 3000);
+    
     
   };
 
