@@ -14,7 +14,7 @@ const Ai = () => {
             </div>
             {/* <hr/> */}
             {/* <Button variant="contained" disabled>Computer</Button> */}
-            <p>Wins:{addStar(compWins, star)}/5</p>
+            <p>Wins: {addStar(compWins, star)}/5</p>
         </>
     )
 };

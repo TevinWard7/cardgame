@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Player from './components/Player/Player';
 import Computer from './components/Ai/Ai';
 import { UserContext } from './utils/UserContext';
@@ -16,45 +16,72 @@ function App() {
   const [wins, setWins] = useState(0);
   const [compWins, setCompWins] = useState(0);
 
-  const [userCardImg, setUserCardImg] = useState(qpink);
-  const [userCardVal, setUserCardVal] = useState();
-  console.log(userCardVal)
-
   const [compCardImg, setCompCardImg] = useState(qblue);
+  const [compSuit, setCompSuit] = useState();
   const [compCardVal, setCompCardVal] = useState();
-  console.log(compCardVal)
+
+  const [userCardImg, setUserCardImg] = useState(qpink);
+  const [userSuit, setUserSuit] = useState();
+  const [userCardVal, setUserCardVal] = useState();
 
   const [disablePly, setDisablePly] = useState(false);
 
-  const compareCards = () => {
+  const winner = (WhoWon) => {
 
-    if (compCardVal > userCardVal) {
+    if (WhoWon === "Computer") {
       setCompWins(compWins + 1);
       setTimeout(() => { setCompCardImg(sprinkle); }, 1050);
       setTimeout(() => { setCompCardImg(compCardImg); }, 3050);
-    };
-    if (userCardVal > compCardVal) {
+    }
+    if (WhoWon === "User") {
       setWins(wins + 1);
       setTimeout(() => { setUserCardImg(sprinkle); }, 2000);
       setTimeout(() => { setUserCardImg(userCardImg); }, 3050);
-    };
+    }
+
+  }
+
+  const compareCards = () => {
+    console.log("machine: " + compSuit);
+    console.log("you: " + userSuit);
+
+    if (userSuit !== compSuit) {
+      if (compSuit === "SPADES" && userSuit !== "SPADES") winner("Computer");
+      if (userSuit === "SPADES" && compSuit !== "SPADES") winner("Computer");
+      
+      
+    }
+    if (userSuit === compSuit) {
+
+      if (compCardVal > userCardVal) {
+        winner("Computer");
+      }
+      else {
+        winner("User");
+      }
+
+    }
 
     // Enable play button again
     setTimeout(() => { setDisablePly(false); }, 3000);
     
-    
-  };
+  }
+
 
   const storeCardValues = (res) => {
 
-    // Set the "value" of the card from API
+    // Set the suit of the card from API
+    setCompSuit(res.data.cards[1].suit);
+    setUserSuit(res.data.cards[0].suit);
+
+    // Set the # "value" of the card from API
     setCompCardVal(res.data.cards[1].value);
     setUserCardVal(res.data.cards[0].value);
 
     // Set card image for user & computer
     setCompCardImg(res.data.cards[1].images.svg);
     setUserCardImg(res.data.cards[0].images.svg);
-    
+
     compareCards();
 
   };
