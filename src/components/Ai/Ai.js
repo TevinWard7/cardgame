@@ -10,7 +10,7 @@ const Ai = () => {
         <>
             <h2>AI</h2>
             <div className="cards comp-player">
-                <img src={compCardImg} alt="card" height="250px" width="250px"/>
+                <img src={compCardImg} alt="card" height="200px" width="200px"/>
             </div>
             {/* <hr/> */}
             {/* <Button variant="contained" disabled>Computer</Button> */}

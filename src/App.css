@@ -8,6 +8,10 @@
   src: url(./fonts/azdt-Super.otf);
 }
 
+#logo {
+  margin: 1rem 1rem;
+}
+
 .App {
   text-align: center;
   overflow: hidden;
@@ -17,15 +21,19 @@
 
 h1 {
   font-family: futurab;
-  font-size: 13.3px;
+  font-size: 15px;
   font-weight: 900;
   font-style: italic;
 }
 
 h2 {
   font-family: futurab;
-  font-size: 40px;
+  font-size: 45px;
   font-weight: 900;
+}
+
+p {
+  font-size: 22.5px;
 }
 
 .background {
@@ -41,11 +49,13 @@ h2 {
   flex-direction: row;
   justify-content: space-evenly;
 
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   padding-left: -3rem;
   padding-right: -3rem;
 }
 
 .cards {
   margin-bottom: 1rem;
-  padding: 1rem 3rem 0rem 3rem;
+  padding: 0rem 3rem 0rem 3rem;
 }

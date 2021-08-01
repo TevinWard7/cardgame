@@ -5,10 +5,9 @@ import Computer from './components/Ai/Ai';
 import { UserContext } from './utils/UserContext';
 import deck from './images/h.gif';
 import sprinkle from './images/fs.gif'
-// import questionM from './images/qm.png';
 import qblue from './images/q-blue.png';
 import qpink from './images/q-pink.png';
-import gameZone from './images/game.png'
+import gameZone from './images/multiple.png'
 import API from './utils/API';
 
 function App() {
@@ -87,25 +86,25 @@ function App() {
   return (
     <div className="App background">
 
-      <UserContext.Provider value={{wins, compWins, userCardImg, compCardImg, drawCards, disablePly, addStar}}>
+        <UserContext.Provider value={{wins, compWins, userCardImg, compCardImg, drawCards, disablePly, addStar}}>
 
-        {/* <h1>High Card Wins</h1> */}
-        <img src={gameZone} alt="game" width="83.3" height="83.3"/>
-        <h1>HIGH SCORE WINS</h1>
+          {/* <h1>High Card Wins</h1> */}
+          <img src={gameZone} alt="game" width="66" height="66" id="logo"/>
+          <h1>HIGH SCORE WINS</h1>
 
-        <div className="players">
+          <div className="players">
 
-          <div>
-            <Player />
+            <div>
+              <Player />
+            </div>
+
+            <div>
+              <Computer />
+            </div>
+
           </div>
 
-          <div>
-            <Computer />
-          </div>
-
-        </div>
-
-      </UserContext.Provider>
+        </UserContext.Provider>
 
     </div>
   );

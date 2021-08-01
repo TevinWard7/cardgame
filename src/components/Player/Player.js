@@ -11,7 +11,7 @@ const Player = () => {
         <>
             <h2>You</h2>
             <div className="cards">
-                <img src={userCardImg} alt="card" height="250px" width="250px"/>
+                <img src={userCardImg} alt="card" height="200px" width="200px"/>
             </div>
             <hr/>
             <p>{addStar(wins, star)}</p>
