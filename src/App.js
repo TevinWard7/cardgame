@@ -74,11 +74,18 @@ function App() {
 
   };
 
+  const addStar = (num, image) => {
+    if (num === 1) return(<img src={image} alt="star"/>);
+    if (num === 2) return(<><img src={image} alt="star"/> <img src={image} alt="star"/></>);
+    if (num === 3) return(<><img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/></>);
+    if (num === 4) return(<><img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/></>);
+    if (num === 5) return(<><img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/></>);
+  }
 
   return (
     <div className="App background">
 
-      <UserContext.Provider value={{wins, compWins, userCardImg, compCardImg, drawCards, disablePly}}>
+      <UserContext.Provider value={{wins, compWins, userCardImg, compCardImg, drawCards, disablePly, addStar}}>
 
         <h1>High Card Wins</h1>
         <img src={gameZone} alt="game" width="50" height="50"/>
