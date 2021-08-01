@@ -1,7 +1,23 @@
+@font-face {
+  font-family: futura;
+  src: url(./fonts/Futura.otf);
+}
+
+@font-face {
+  font-family: futurab;
+  src: url(./fonts/azdt-Super.otf);
+}
+
 .App {
   text-align: center;
   overflow: hidden;
   color: white;
+  font-family: futura;
+}
+
+h1 {
+  font-family: futurab;
+  font-size: 40px;
 }
 
 .background {
@@ -23,5 +39,5 @@
 
 .cards {
   margin-bottom: 1rem;
-  padding: 1rem 3rem 0rem 2rem;
+  padding: 1rem 3rem 0rem 3rem;
 }

@@ -11,7 +11,7 @@ const Ai = () => {
             <h1>Computer</h1>
             <p>Score: {compWins}</p>
             <div className="cards">
-                <img src={compCardImg} alt="card" height="250px" width="200px"/>
+                <img src={compCardImg} alt="card" height="250px" width="250px"/>
             </div>
             <hr/>
             <Button variant="contained" disabled>Computer</Button>
