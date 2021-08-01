@@ -3,14 +3,15 @@ import React, {useState} from 'react';
 import Player from './components/Player/Player';
 import Computer from './components/Ai/Ai';
 import { UserContext } from './utils/UserContext';
-// import deck from './images/deck.png';
+import deck from './images/h.gif';
+import sprinkle from './images/fs.gif'
 import questionM from './images/qm.png';
+import gameZone from './images/game.png'
 import API from './utils/API';
 
 function App() {
 
   const [wins, setWins] = useState(0);
-  console.log(`wins: ${wins}`)
   const [compWins, setCompWins] = useState(0);
 
   const [userCardImg, setUserCardImg] = useState(questionM);
@@ -21,22 +22,33 @@ function App() {
 
   const compareCards = () => {
 
-    if (userCardVal > compCardVal) setWins(wins + 1);
-    if (userCardVal < compCardVal) setCompWins(compWins + 1);
+    if (compCardVal > userCardVal) setCompWins(compWins + 1);
+    if (userCardVal > compCardVal) {
+      setWins(wins + 1);
+      setTimeout(() => { setUserCardImg(sprinkle); }, 2000);
+      setTimeout(() => { setUserCardImg(userCardImg); }, 4000);
+    };
+    
+  };
+
+  const storeCardValues = (res) => {
+
+    // Set the "value" of the card from API
+    setCompCardVal(res.data.cards[1].value);
+    setUserCardVal(res.data.cards[0].value);
+
+    // Set card image for user & computer
+    setCompCardImg(res.data.cards[1].images.svg);
+    setUserCardImg(res.data.cards[0].images.svg);
+    
+    compareCards();
 
   };
 
-  const setCardProps = (res) => {
+  const dramaPause = (res) => {
 
-    // Set card image for user & get the "value" of the card from API
-    setUserCardImg(res.data.cards[0].images.svg);
-    setUserCardVal(res.data.cards[0].value);
-
-    // Set card image for computer & get the "value" of the card from API
-    setCompCardImg(res.data.cards[1].images.svg);
-    setCompCardVal(res.data.cards[1].value);
-
-    compareCards();
+    setUserCardImg(deck);
+    setTimeout(() => { storeCardValues(res); }, 3000);
 
   }
 
@@ -45,16 +57,18 @@ function App() {
     // Draw cards from the API (2 cards)
     let res = await API.draw();
 
-    setCardProps(res)
+    dramaPause(res);
 
   };
+
 
   return (
     <div className="App background">
 
       <UserContext.Provider value={{wins, compWins, userCardImg, compCardImg, drawCards}}>
 
-        <h1>Game</h1>
+        <h1>High Card Wins</h1>
+        <img src={gameZone} alt="game" width="50" height="50"/>
 
         <div className="players">
 

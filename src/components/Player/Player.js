@@ -11,7 +11,7 @@ const Player = () => {
             <h1>You</h1>
             <p>Score: {wins}</p>
             <div className="cards">
-                <img src={userCardImg} alt="card" height="300px" width="200px"/>
+                <img src={userCardImg} alt="card" height="250px" width="200px"/>
             </div>
             <hr/>
             <Button variant="contained" onClick={() => drawCards()}>Play hand</Button>
