@@ -9,17 +9,17 @@ const Player = () => {
 
     return(
         <>
-            <h1>You</h1>
-            {/* <p>Wins: {wins}</p> */}
+            <h2>You</h2>
             <div className="cards">
                 <img src={userCardImg} alt="card" height="250px" width="250px"/>
             </div>
             <hr/>
+            <p>{addStar(wins, star)}</p>
             {disablePly === true ? 
             <Button variant="contained" disabled>Playing..</Button>
             :
             <Button variant="contained" onClick={() => drawCards()}>Play hand</Button>}
-            <p>{addStar(wins, star)}</p>
+            
         </>
     )
 };

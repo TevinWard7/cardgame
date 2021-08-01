@@ -5,7 +5,9 @@ import Computer from './components/Ai/Ai';
 import { UserContext } from './utils/UserContext';
 import deck from './images/h.gif';
 import sprinkle from './images/fs.gif'
-import questionM from './images/qm.png';
+// import questionM from './images/qm.png';
+import qblue from './images/q-blue.png';
+import qpink from './images/q-pink.png';
 import gameZone from './images/game.png'
 import API from './utils/API';
 
@@ -14,10 +16,10 @@ function App() {
   const [wins, setWins] = useState(0);
   const [compWins, setCompWins] = useState(0);
 
-  const [userCardImg, setUserCardImg] = useState(questionM);
+  const [userCardImg, setUserCardImg] = useState(qpink);
   const [userCardVal, setUserCardVal] = useState();
 
-  const [compCardImg, setCompCardImg] = useState(questionM);
+  const [compCardImg, setCompCardImg] = useState(qblue);
   const [compCardVal, setCompCardVal] = useState();
 
   const [disablePly, setDisablePly] = useState(false);
@@ -87,8 +89,9 @@ function App() {
 
       <UserContext.Provider value={{wins, compWins, userCardImg, compCardImg, drawCards, disablePly, addStar}}>
 
-        <h1>High Card Wins</h1>
-        <img src={gameZone} alt="game" width="50" height="50"/>
+        {/* <h1>High Card Wins</h1> */}
+        <img src={gameZone} alt="game" width="83.3" height="83.3"/>
+        <h1>HIGH SCORE WINS</h1>
 
         <div className="players">
 
