@@ -59,3 +59,19 @@ p {
   margin-bottom: 1rem;
   padding: 0rem 3rem 0rem 3rem;
 }
+
+.end-screen {
+  font-size: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+h3 {
+  font-size: 45px;
+  font-family: futurab;
+  font-weight: 900;
+  font-style: italic;
+}

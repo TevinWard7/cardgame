@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Player from './components/Player/Player';
 import Computer from './components/Ai/Ai';
 import { UserContext } from './utils/UserContext';
@@ -7,8 +7,9 @@ import deck from './images/h.gif';
 import sprinkle from './images/fs.gif'
 import qblue from './images/q-blue.png';
 import qpink from './images/q-pink.png';
-import gameZone from './images/multiple.png'
+import gameZone from './images/game.png'
 import API from './utils/API';
+import Button from '@material-ui/core/Button';
 
 function App() {
 
@@ -17,9 +18,11 @@ function App() {
 
   const [userCardImg, setUserCardImg] = useState(qpink);
   const [userCardVal, setUserCardVal] = useState();
+  console.log(userCardVal)
 
   const [compCardImg, setCompCardImg] = useState(qblue);
   const [compCardVal, setCompCardVal] = useState();
+  console.log(compCardVal)
 
   const [disablePly, setDisablePly] = useState(false);
 
@@ -81,30 +84,36 @@ function App() {
     if (num === 3) return(<><img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/></>);
     if (num === 4) return(<><img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/></>);
     if (num === 5) return(<><img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/></>);
-  }
+  };
 
   return (
     <div className="App background">
 
-        <UserContext.Provider value={{wins, compWins, userCardImg, compCardImg, drawCards, disablePly, addStar}}>
+      {wins === 5 || compWins === 5 ?
+      <div className="end-screen">
+        <h3>{wins === 5 ? `You Win 🏆 ` : `Machine Wins 🏆 `}</h3>
+        <Button variant="contained" onClick={() => window.location.reload()} color="default">Reset</Button>
+      </div>
+      :
+      <UserContext.Provider value={{wins, compWins, userCardImg, compCardImg, drawCards, disablePly, addStar}}>
 
-          {/* <h1>High Card Wins</h1> */}
-          <img src={gameZone} alt="game" width="66" height="66" id="logo"/>
-          <h1>HIGH SCORE WINS</h1>
+        <img src={gameZone} alt="game" width="66" height="66" id="logo"/>
+        <h1>HIGH CARD WINS</h1>
 
-          <div className="players">
+        <div className="players">
 
-            <div>
-              <Player />
-            </div>
-
-            <div>
-              <Computer />
-            </div>
-
+          <div>
+            <Player />
           </div>
 
-        </UserContext.Provider>
+          <div>
+            <Computer />
+          </div>
+
+        </div>
+
+      </UserContext.Provider>
+      }
 
     </div>
   );
