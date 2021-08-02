@@ -4,7 +4,6 @@ import Player from './components/Player/Player';
 import Computer from './components/Ai/Ai';
 import { UserContext } from './utils/UserContext';
 import deck from './images/h.gif';
-import sprinkle from './images/fs.gif'
 import qblue from './images/q-blue.png';
 import qpink from './images/q-pink.png';
 import gameZone from './images/game.png'
@@ -19,10 +18,12 @@ function App() {
   const [compWins, setCompWins] = useState(0);
 
   const [compCardImg, setCompCardImg] = useState(qblue);
+  const [p2Congrat, setP2Congrat] = useState();
   const [compSuit, setCompSuit] = useState();
   const [compCardVal, setCompCardVal] = useState();
 
   const [userCardImg, setUserCardImg] = useState(qpink);
+  const [p1Congrat, setP1Congrat] = useState();
   const [userSuit, setUserSuit] = useState();
   const [userCardVal, setUserCardVal] = useState();
 
@@ -32,16 +33,16 @@ function App() {
 
     if (WhoWon === "Computer") {
       setCompWins(compWins + 1);
-      setTimeout(() => { setCompCardImg(sprinkle); }, 1050);
-      setTimeout(() => { setCompCardImg(compCardImg); }, 3050);
+      setTimeout(() => { setP2Congrat(999); }, 1050);
+      setTimeout(() => { setP2Congrat(-1); }, 3050);
     }
     if (WhoWon === "User") {
       setWins(wins + 1);
-      setTimeout(() => { setUserCardImg(sprinkle); }, 2000);
-      setTimeout(() => { setUserCardImg(userCardImg); }, 3050);
+      setTimeout(() => { setP1Congrat(999); }, 1050);
+      setTimeout(() => { setP1Congrat(-1); }, 3050);
     }
 
-  }
+  };
 
   const compareCards = () => {
     console.log("machine: " + compSuit);
@@ -67,8 +68,7 @@ function App() {
     // Enable play button again
     setTimeout(() => { setDisablePly(false); }, 3000);
     
-  }
-
+  };
 
   const storeCardValues = (res) => {
 
@@ -90,14 +90,16 @@ function App() {
 
   const dramaPause = (res) => {
 
+    // Set user's card image to a "loading" image
     setUserCardImg(deck);
+
     setTimeout(() => { storeCardValues(res); }, 3000);
 
   }
 
   const drawCards = async () => {
 
-    // Disable from pressing draw again right awat
+    // Disable from pressing draw again right away
     setDisablePly(true);
 
     // Draw cards from the API (2 cards)
@@ -120,11 +122,12 @@ function App() {
       targets: '#end-t',
       keyframes: [
         {opacity: 0},
-        {translateY: -1000},
+        {opacity: 25},
+        {opacity: 45},
+        {opacity: 75},
         {opacity: 100},
-        {translateY: 0},
       ],
-      duration: 1000,
+      duration: 2000,
       easing: 'easeInOutQuad'
     });
   },[wins, compWins])
@@ -138,7 +141,7 @@ function App() {
         <Button variant="contained" onClick={() => window.location.reload()} color="default">Reset</Button>
       </div>
       :
-      <UserContext.Provider value={{wins, compWins, userCardImg, compCardImg, drawCards, disablePly, addStar}}>
+      <UserContext.Provider value={{wins, compWins, userCardImg, compCardImg, drawCards, disablePly, addStar, p1Congrat, p2Congrat}}>
 
         <img src={gameZone} alt="game" width="66" height="66" id="logo"/>
         <h1>HIGH CARD WINS</h1>

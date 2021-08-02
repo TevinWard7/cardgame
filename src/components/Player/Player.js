@@ -6,7 +6,7 @@ import anime from 'animejs/lib/anime.es.js';
 
 const Player = () => {
 
-    const {wins, userCardImg, drawCards, disablePly, addStar} = useContext(UserContext);
+    const {wins, userCardImg, drawCards, disablePly, addStar, p1Congrat} = useContext(UserContext);
 
     useEffect(() => {
 
@@ -27,9 +27,10 @@ const Player = () => {
     return(
         <>
             <h2>You</h2>
-            <div className="cards">
-                <img src={userCardImg} alt="card" height="200px" width="200px"/>
-            </div>
+                <div className="cards">
+                    <img src={userCardImg} alt="card" height="200px" width="200px"/>
+                    <div className="p1-overlay" style={{zIndex: p1Congrat}}></div>
+                </div>
             <hr className="line"/>
             <p>Wins: {addStar(wins, star)}/5</p>
             {disablePly === true ? 
