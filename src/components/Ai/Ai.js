@@ -13,7 +13,7 @@ const Ai = () => {
                 <img src={compCardImg} alt="card" height="200px" width="200px"/>
                 <div className="congrat-overlay" style={{zIndex: p2Congrat}}></div>
             </div>
-            <hr style={{color:"transparant"}}/>
+            <hr id="hr2"/>
             {/* <Button variant="contained" disabled>Computer</Button> */}
             <p>{addStar(compWins, star)}</p>
         </>

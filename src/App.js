@@ -93,6 +93,7 @@ function App() {
     // Set user's card image to a "loading" image
     setUserCardImg(deck);
 
+    // Store values and go through the rest of the chain after 3milisec for dramatic pause
     setTimeout(() => { storeCardValues(res); }, 3000);
 
   }
@@ -127,9 +128,23 @@ function App() {
         {opacity: 75},
         {opacity: 100},
       ],
+      duration: 3000,
+      easing: 'easeInOutQuad'
+    });
+
+    anime({
+      targets: '#end-btn',
+      keyframes: [
+        {opacity: 0},
+        {translateY: 550},
+        {opacity: 100},
+        {translateY: 0},
+        
+      ],
       duration: 2000,
       easing: 'easeInOutQuad'
     });
+
   },[wins, compWins])
 
   return (
@@ -138,7 +153,7 @@ function App() {
       {wins === 5 || compWins === 5 ?
       <div className="end-screen">
         <h3 id="end-t" style={{opacity:0}}>{wins === 5 ? `You Win 🏆 ` : `Machine Wins 🏆 `}</h3>
-        <Button variant="contained" onClick={() => window.location.reload()} color="default">Reset</Button>
+        <Button style={{opacity:0}} id="end-btn" variant="contained" onClick={() => window.location.reload()} color="default">Reset</Button>
       </div>
       :
       <UserContext.Provider value={{wins, compWins, userCardImg, compCardImg, drawCards, disablePly, addStar, p1Congrat, p2Congrat}}>

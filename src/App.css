@@ -32,6 +32,13 @@ h2 {
   font-weight: 900;
 }
 
+h3 {
+  font-size: 45px;
+  font-family: futurab;
+  font-weight: 900;
+  font-style: italic;
+}
+
 p {
   font-size: 22.5px;
 }
@@ -61,8 +68,25 @@ p {
   position: relative;
 }
 
+.congrat-overlay {
+  position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-image: url(./images/fs.gif);
+    z-index: -1;
+    color:white;
+}
+
+/* User player's underline */
 hr {
   border: .1px solid #eeeeee;
+}
+
+/* Computer player's underline */
+#hr2 {
+  border: .1px solid #ffffff00;
 }
 
 Button {
@@ -77,22 +101,4 @@ Button {
   justify-content: center;
   align-items: center;
   height: 100%;
-}
-
-h3 {
-  font-size: 45px;
-  font-family: futurab;
-  font-weight: 900;
-  font-style: italic;
-}
-
-.congrat-overlay {
-  position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background-image: url(./images/fs.gif);
-    z-index: -1;
-    color:white;
 }
