@@ -86,18 +86,7 @@ h3 {
   font-style: italic;
 }
 
-.p1-overlay {
-  position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background-image: url(./images/fs.gif);
-    z-index: -1;
-    color:white;
-}
-
-.p2-overlay {
+.congrat-overlay {
   position:absolute;
     top:0;
     left:0;
