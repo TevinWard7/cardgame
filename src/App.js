@@ -19,13 +19,9 @@ function App() {
 
   const [compCardImg, setCompCardImg] = useState(qblue);
   const [p2Congrat, setP2Congrat] = useState();
-  const [compSuit, setCompSuit] = useState();
-  const [compCardVal, setCompCardVal] = useState();
 
   const [userCardImg, setUserCardImg] = useState(qpink);
   const [p1Congrat, setP1Congrat] = useState();
-  const [userSuit, setUserSuit] = useState();
-  const [userCardVal, setUserCardVal] = useState();
 
   const [disablePly, setDisablePly] = useState(false);
 
@@ -44,25 +40,45 @@ function App() {
 
   };
 
-  const compareCards = () => {
-    console.log("machine: " + compSuit);
-    console.log("you: " + userSuit);
+  const compareCards = (suits, values) => {
 
-    if (userSuit !== compSuit) {
-      if (compSuit === "SPADES" && userSuit !== "SPADES") winner("Computer");
-      if (userSuit === "SPADES" && compSuit !== "SPADES") winner("Computer");
-      
-      
+    const [compS, userS] = suits;
+    const [compV, userV] = values;
+    console.log(suits)
+    console.log(`comparefunc -> compval: ${compV}, userval: ${userV}`)
+
+    const sOrder = {
+      "CLUBS":1,
+      "DIAMONDS":2,
+      "HEARTS":3,
+      "SPADES":4,
+    };
+
+    const vOrder = {
+      1:1,
+      2:2,
+      3:3,
+      4:4,
+      5:5,
+      6:6,
+      7:7,
+      8:8,
+      9:9,
+      10:10,
+      "JACK":12,
+      "QUEEN":13,
+      "KING":14,
+      "ACE":15,
+    };
+
+    if (compS !== userS) {
+      if (sOrder[compS] > sOrder[userS]) winner("Computer");
+      if (sOrder[compS] < sOrder[userS]) winner("User");
     }
-    if (userSuit === compSuit) {
 
-      if (compCardVal > userCardVal) {
-        winner("Computer");
-      }
-      else {
-        winner("User");
-      }
-
+    if (compS === userS) {
+      if (vOrder[compV] > vOrder[userV]) winner("Computer");
+      if (vOrder[compV] < vOrder[userV]) winner("User");
     }
 
     // Enable play button again
@@ -72,19 +88,18 @@ function App() {
 
   const storeCardValues = (res) => {
 
-    // Set the suit of the card from API
-    setCompSuit(res.data.cards[1].suit);
-    setUserSuit(res.data.cards[0].suit);
-
     // Set the # "value" of the card from API
-    setCompCardVal(res.data.cards[1].value);
-    setUserCardVal(res.data.cards[0].value);
-
-    // Set card image for user & computer
+    // Set card image
     setCompCardImg(res.data.cards[1].images.svg);
+
     setUserCardImg(res.data.cards[0].images.svg);
 
-    compareCards();
+    // Put computer suit [1] & user suit into an array
+    const suits = [res.data.cards[1].suit, res.data.cards[0].suit];
+    const values = [res.data.cards[1].value, res.data.cards[0].value]
+    console.log(`storeVal function -> Comp: ${res.data.cards[1].value} You: ${res.data.cards[0].value}`);
+
+    compareCards(suits, values);
 
   };
 
@@ -141,7 +156,7 @@ function App() {
         {translateY: 0},
         
       ],
-      duration: 2000,
+      duration: 3000,
       easing: 'easeInOutQuad'
     });
 
