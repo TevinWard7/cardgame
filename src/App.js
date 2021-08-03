@@ -88,14 +88,14 @@ function App() {
 
   const storeCardValues = (res) => {
 
-    // Set the # "value" of the card from API
-    // Set card image
+    
+    // Set card images
     setCompCardImg(res.data.cards[1].images.svg);
-
     setUserCardImg(res.data.cards[0].images.svg);
 
-    // Put computer suit [1] & user suit into an array
+    // Put suit[1] of computer card & user's into an array
     const suits = [res.data.cards[1].suit, res.data.cards[0].suit];
+    // # "value" of the cards from API
     const values = [res.data.cards[1].value, res.data.cards[0].value]
     console.log(`storeVal function -> Comp: ${res.data.cards[1].value} You: ${res.data.cards[0].value}`);
 
@@ -156,7 +156,7 @@ function App() {
         {translateY: 0},
         
       ],
-      duration: 3000,
+      duration: 1000,
       easing: 'easeInOutQuad'
     });
 
