@@ -1,9 +1,6 @@
 ## Card Game
 52 card deck game, you vs. the computer! First to score 5 points wins the game
-
-![Screenshot](high-card.png)
-
-
+<!-- ![Screenshot](high-card.png) -->
 
 ## Table Of Contents
 - [User Story](#User-Story)
@@ -23,8 +20,8 @@ The first to win 5 rounds determining the winner of the game
 * React.js
 * Material-UI
 
-<!-- # Demonstration
-![picture](./demo.gif) -->
+# Demonstration
+![picture](./demo.gif)
 
 ### Linked To Deployed App
 https://objective-bhabha-5601ca.netlify.app
