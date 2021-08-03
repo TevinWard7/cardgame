@@ -6,9 +6,11 @@ import { UserContext } from './utils/UserContext';
 import deck from './images/h.gif';
 import qblue from './images/q-blue.png';
 import qpink from './images/q-pink.png';
-import gameZone from './images/game.png'
+import gameZone from './images/game.png';
+// import drules from "./images/drules.png"
 import API from './utils/API';
 import Button from '@material-ui/core/Button';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import anime from 'animejs/lib/anime.es.js';
 
 
@@ -24,6 +26,7 @@ function App() {
   const [p1Congrat, setP1Congrat] = useState();
 
   const [disablePly, setDisablePly] = useState(false);
+  const [infoZ, setInfoZ] = useState(-1);
 
   const winner = (WhoWon) => {
 
@@ -133,6 +136,11 @@ function App() {
     if (num === 5) return(<><img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/> <img src={image} alt="star"/></>);
   };
 
+  const toggleInfo = (io) => {
+    if (io === "Close") setInfoZ(-1);
+    if (io === "Open") setInfoZ(999);
+  }
+
   useEffect(() => {
     anime({
       targets: '#end-t',
@@ -174,7 +182,29 @@ function App() {
       <UserContext.Provider value={{wins, compWins, userCardImg, compCardImg, drawCards, disablePly, addStar, p1Congrat, p2Congrat}}>
 
         <img src={gameZone} alt="game" width="66" height="66" id="logo"/>
-        <h1>HIGH CARD WINS</h1>
+        <h1>HIGH CARD WINS <HelpOutlineIcon fontSize="small" style={{cursor:"pointer"}} onClick={() => toggleInfo("Open")}/></h1>
+
+        <div className="help-overlay" style={{zIndex: infoZ}}>
+
+          <div id="info-text">
+            <ul>
+              <h2>
+                {/* <img src={drules} alt="rule book" width="50" height="50"/> */}
+                <em>Rules</em>
+              </h2>
+              <br/>
+              <p>
+                You Vs. The computer<br/><br/>
+                Cards are shuffled & selected at random<br/><br/>
+                Highest card wins!<br/><br/>
+                First by suit then by card value<br/><br/>
+              </p>
+              <h1 style={{cursor:"pointer"}} onClick={() => toggleInfo("Close")}>Close</h1>
+
+            </ul>
+          </div>
+        
+        </div>
 
         <div className="players">
 

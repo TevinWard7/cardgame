@@ -79,6 +79,18 @@ p {
     color:white;
 }
 
+.help-overlay {
+  position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: rgba(0, 0, 0, 0.719);
+    z-index: -1;
+    color:white;
+}
+
+
 /* User player's underline */
 hr {
   border: .1px solid #eeeeee;
