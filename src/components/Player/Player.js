@@ -42,7 +42,7 @@ const Player = () => {
             <hr className="line"/>
             <p>Wins: {addStar(wins, star)}/5</p>
             {disablePly === true ? 
-            <Button variant="contained" disabled>Playing..</Button>
+            <Button className="Btn" variant="contained" disabled>Playing..</Button>
             :
             <Button style={{opacity: btnOp}} variant="contained" onClick={() => drawCards()}>Play hand</Button>}
             

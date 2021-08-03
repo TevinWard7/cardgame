@@ -89,8 +89,9 @@ hr {
   border: .1px solid #ffffff00;
 }
 
-Button {
-  color: blueviolet;
+.Btn {
+  background-color: red;
+  color: rgb(253, 250, 255);
   font-family: 'Times New Roman', Times, serif;
 }
 
@@ -102,3 +103,4 @@ Button {
   align-items: center;
   height: 100%;
 }
+
